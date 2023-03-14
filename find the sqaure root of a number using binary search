@@ -1,0 +1,50 @@
+#include <iostream>
+
+using namespace std;
+
+int square(int n){
+    int start=0;
+    int end=n-1;
+    int mid=start+(end-start)/2;
+    int ans=-1;
+    int target=n;
+    while(start<=end){
+        if(mid*mid==target){
+            return mid;
+        }
+        else if(mid*mid<target){
+            ans=mid;
+            start=mid+1;
+        }
+        else{
+            end=mid-1;
+        }
+        mid=start+(end-start)/2;
+    }
+    return ans;
+}
+
+int main()
+{
+int n;
+int precision;
+cout<<"enter the value of sqaure root";
+cin>>n;
+cout<<"upto which point you wnat answer";
+cin>>precision;
+int ans=square(n);
+double step=0.1;
+double finalans=ans;
+for(int i=0;i<precision;i++){
+    for(double j=finalans;j*j<=n;j=j+step){
+    finalans=j;
+    
+}
+step=step/10;
+    
+}
+
+cout<<"the value of square root is"<<finalans;
+
+    return 0;
+}
